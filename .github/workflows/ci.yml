@@ -26,7 +26,7 @@ jobs:
           fetch-depth: 0
       - name: build
         run: |
-          cid workflow run --stage build
+          cid --log-level=debug workflow run --stage build
   # test
   test:
     name: Test
@@ -40,7 +40,7 @@ jobs:
           fetch-depth: 0
       - name: test
         run: |
-          cid workflow run --stage test
+          cid --log-level=debug workflow run --stage test
   # lint
   lint:
     name: Lint
@@ -54,4 +54,4 @@ jobs:
           fetch-depth: 0
       - name: lint
         run: |
-          cid workflow run --stage lint
+          cid --log-level=debug workflow run --stage lint
