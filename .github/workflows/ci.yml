@@ -13,6 +13,23 @@ on:
 
 # jobs
 jobs:
+  # info
+  info:
+    name: Info
+    runs-on: ubuntu-latest
+    steps:
+      - name: prepare environment
+        uses: cidverse/ghact-cid-setup@main
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: build
+        run: |
+          echo "> project modules"
+          cid module ls
+          echo "> workflows"
+          cid workflow ls
   # build
   build:
     name: Build
@@ -26,7 +43,11 @@ jobs:
           fetch-depth: 0
       - name: build
         run: |
-          cid --log-level=trace workflow run --stage build
+          cid workflow run --stage build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: .dist
   # test
   test:
     name: Test
@@ -40,7 +61,7 @@ jobs:
           fetch-depth: 0
       - name: test
         run: |
-          cid --log-level=trace workflow run --stage test
+          cid workflow run --stage test
   # lint
   lint:
     name: Lint
@@ -54,4 +75,22 @@ jobs:
           fetch-depth: 0
       - name: lint
         run: |
-          cid --log-level=trace workflow run --stage lint
+          cid workflow run --stage lint
+  # scan
+  scan:
+    name: Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: prepare environment
+        uses: cidverse/ghact-cid-setup@main
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          cid action run central/sonarqube-scan
