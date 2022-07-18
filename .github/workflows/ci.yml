@@ -44,11 +44,9 @@ jobs:
       - name: build
         run: |
           cid workflow run --stage build
-          whoami
-          ls -la .dist
       - uses: actions/upload-artifact@v3
         with:
-          name: build-${{ github.ref }}
+          name: build-${{ github.ref_name }}
           path: .dist
           retention-days: 1
           if-no-files-found: ignore
