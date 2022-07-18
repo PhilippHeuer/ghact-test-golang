@@ -48,7 +48,7 @@ jobs:
           ls -la .dist
       - uses: actions/upload-artifact@v3
         with:
-          name: build
+          name: build-${{ github.ref }}
           path: .dist
           retention-days: 1
           if-no-files-found: ignore
