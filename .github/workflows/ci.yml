@@ -21,7 +21,7 @@ jobs:
       - name: prepare environment
         uses: cidverse/ghact-cid-setup@main
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: build
@@ -38,7 +38,7 @@ jobs:
       - name: prepare environment
         uses: cidverse/ghact-cid-setup@main
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: build
@@ -58,7 +58,7 @@ jobs:
       - name: prepare environment
         uses: cidverse/ghact-cid-setup@main
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: test
@@ -72,7 +72,7 @@ jobs:
       - name: prepare environment
         uses: cidverse/ghact-cid-setup@main
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: lint
@@ -86,7 +86,7 @@ jobs:
       - name: prepare environment
         uses: cidverse/ghact-cid-setup@main
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: scan
